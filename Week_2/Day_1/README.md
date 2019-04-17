@@ -63,4 +63,15 @@
       * RESPONSE JSON format
           
 
-  
+## Breakout Notes
+
+* API is an interface
+  * Endpoints that we can use standard HTTP methods on and pull things out
+  * Most APIs use REST and return JSON
+  * MetaWeather is presented in HTML, can pull the information out but HTML changes frequently
+  * API is a way to provide people with a standard way to access the data
+  * API are versioned
+
+* request.get()
+  * Each request.get is asynchronous and depends on when response is received
+  * write out functions and reference them in get request to ensure that things are being done at a time

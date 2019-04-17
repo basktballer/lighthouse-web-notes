@@ -14,4 +14,6 @@ This repository contains all of the notes taken by [Eden](https://github.com/bas
   * [Day 2](/Week_2/Day_2)
   * [Day 3](/Week_2/Day_3)
   * [Day 4](/Week_2/Day_4)
-  * [Day 5](/Week_2/Day_5)
+  * Day 5 - No Lectures
+* [Week 3](/Week_3)
+  * [Day 1](/Week_3/Day_1)
