@@ -1,0 +1,21 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  /* same as columns: 1fr 1fr 1fr */
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.tile:nth-child(1) {
+  /* nth child pseudo selector */
+  grid-column: 1;
+    grid-column-start: 1; 
+    grid-column-end: auto;
+    /* overlap and have span things */
+  grid-row: 1;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

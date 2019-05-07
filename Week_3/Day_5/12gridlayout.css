@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+@media screen and (min-width: 1135px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(5rem, 1fr));
+    grid-column-gap: 15px;
+  }
+}

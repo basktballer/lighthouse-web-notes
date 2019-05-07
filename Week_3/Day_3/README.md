@@ -24,6 +24,9 @@
 * HTML and Javascript file
 * Emmet, type ! and hit Tab
 * Get post, handle success, error handling
+* Use Firacode github, install on machine
+* Bracket colorizers
+* Babel, ESLint
 
 * Reading and debugging is more important than packages downloaded
 * Google things in package.json 
@@ -50,12 +53,23 @@
 
   });
 
-* Start by doing something async
+* Throttle performance on browser and see how long it takes to load all images, Network tab
+
+
+*  how server is handling, (reddit not handling message) sent in responseJSON
+// also error message itself coming back as empty string
+// ie. change password, error message would come back from the server
+// often server return messages with status, depends on 
+
+
+
+* Code Example
   ```javascript
   const title = '<h2>Hello, LHL!</h2>'
   const clickHandler() => console.log("I have been clicked")
-  $(document).ready(() => {
-
+  const handleClick = () => {
+    const subreddit = $('#subreddit-input').val();
+    
     //setTimeout() => {
       //const h2 = `<h2 onclick="clickHandler()">${title}</h2>`;
       //$('.title').html(h2);
@@ -64,25 +78,59 @@
     //} , 2000);
 
     $('.title').html(title)
-    $.ajax({
+    $.ajax({      // ajax is asynchronous, runs as soon as document ready
       type: 'GET',
-      url: 'https//www.reddit.com/r/dogpictures.json'
+      url: `https//www.reddit.com/r/${subreddit}.json`,
+      dataType: 'JSON'
     })
-    .done( response => {
+    .done( response => {  // do not do anything until .done. Intentionally blocking. .done is as same as .then in Javascript promise
+      const markupArray = [];
+
       response.data.children.forEach(post => {
         const {title, permalink, thumbnail} = post.data;
-        
-        const markup = `<a href="http://reddit.com${permalink}" target="_blank"><img src="${thumbnail}" title="${title}"/></a>`
 
-        $('.content').append(markup);
+        if (thumbnail !== 'self' && thumbnail !== '') {        
+          const markup = `
+            <a href="http://reddit.com${permalink}" target="_blank">
+              <img src="${thumbnail}" title="${title}"/>
+            </a>
+            `
+
+          markupArray.push(markup);
+        }
 
       })
-      // post.data.title
-      // post.data.thumbnail
-      // post.data.permalink
 
+      const formattedMarkup = markupArray.join('')
+      $('.content').append(formattedMarkup);
+      
     })
+    .fail( (XHR) => {
+
+      const {error, message} = XHR.responseJSON
+
+      const errorMarkup = `
+        <div style="background-color: red">
+          <h2 style="color: white">${error}: ${message}</h2>
+        </div>
+      `
+      $('.content').append(errorMarkup);
+    }) 
+  }
+
+  $(document).ready(() => {
+
+
+
   })
 
   ```
 
+* AJAX Examples
+  * AJAX under the hood is
+    * xhttp.open( "GET", "ajax_info.txt", true)
+    * xhttp:send()
+    * xhttp.open("POST", "demo_post.asp", true)
+    * GET not better than POST
+    * Data attached to request through POST
+    * GET attaches them in URL parameters

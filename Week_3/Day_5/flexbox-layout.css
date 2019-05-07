@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+}
+
+aside {
+  flex-basis: 33%;
+  order:1;
+}
+
+main {
+  flex-basis: 67%;
+  order:2;
+}
+
+@media screen and (min-width: 600px) {
+  .container{
+    flex-direction: row;
+  }
+}
